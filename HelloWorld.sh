@@ -2,4 +2,4 @@
 
 echo Hello Jenkins
 echo Coke
-echo Pepsi123
+echo Pepsi
