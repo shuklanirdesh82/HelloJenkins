@@ -1,5 +1,5 @@
 node {
-    def app
+    def container
 
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
@@ -10,13 +10,14 @@ node {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-
-        app = docker.build("containertest")
+        sh "echo pwd"
+        sh "ls"
+        container = docker.build("containertest")
     }
 
     stage('Test image') {
 
-        app.inside {
+        container.inside {
             sh 'echo "Tests passed"'
         }
     }
@@ -27,8 +28,8 @@ node {
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+            container.push("${env.BUILD_NUMBER}")
+            container.push("latest")
         }
     }
 }
