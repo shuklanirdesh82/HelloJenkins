@@ -3,4 +3,5 @@
 echo Hello Jenkins
 echo Coke
 echo Pepsi
-docker run hello-world
+echo $TERM
+top
