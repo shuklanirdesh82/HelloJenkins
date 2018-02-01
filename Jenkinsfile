@@ -9,28 +9,26 @@ node("vdvs-slave-1") {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-        sh "echo pwd"
-        sh "ls"
-        sh "echo $env"
-        sh "echo $NODE_NAME"
-        container = docker.build("containertest")
+        sh "echo build"
+    }
+
+    stage('Deploy image') {
+
+        container.inside {
+            sh "echo Deploy"
+        }
     }
 
     stage('Test image') {
 
         container.inside {
-            sh 'echo "Tests passed"'
+            sh "echo Tests passed"
         }
     }
 
-    stage('Push image') {
+    stage('Post result') {
         /* Finally, we'll push the image with two tags:
-         * First, the incremental build number from Jenkins
-         * Second, the 'latest' tag.
-         * Pushing multiple tags is cheap, as all the layers are reused. */
-        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            container.push("${env.BUILD_NUMBER}")
-            container.push("latest")
+           sh "echo post result"
         }
     }
 }
