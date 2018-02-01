@@ -1,6 +1,7 @@
 FROM ubuntu
 
-ENV TERM=xterm
+RUN apt-get update
+RUN apt-get install -y curl
 
 COPY HelloWorld.sh /HelloWorld.sh
 
