@@ -12,7 +12,7 @@ node {
          * docker build on the command line */
         sh "echo pwd"
         sh "ls"
-        sh "$ env | grep DOCKER_HOST"
+        sh "env | grep DOCKER_HOST"
         container = docker.build("containertest")
     }
 
