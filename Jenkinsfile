@@ -13,6 +13,7 @@ node {
         sh "echo pwd"
         sh "ls"
         sh "echo env"
+        sh "NODE_NAME"
         container = docker.build("containertest")
     }
 
