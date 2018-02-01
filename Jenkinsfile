@@ -11,11 +11,10 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("ashahi/friendlyones")
+        app = docker.build("containertest")
     }
 
     stage('Test image') {
-        /* Ideally, we would run a test framework against our image.
 
         app.inside {
             sh 'echo "Tests passed"'
