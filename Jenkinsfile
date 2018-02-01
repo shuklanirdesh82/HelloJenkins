@@ -1,6 +1,5 @@
-node {
+node("vdvs-slave-1") {
     def container
-    label 'vdvs-slave-1'
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
 
